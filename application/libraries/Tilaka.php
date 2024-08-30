@@ -1,2 +1,181 @@
 <?php
- class Tilaka { public static function oauth() { $body = array("\x63\x6c\151\145\156\164\x5f\151\144" => CLIENT_ID_TILAKA, "\143\x6c\151\x65\x6e\x74\x5f\163\x65\143\x72\x65\164" => CLIENT_SECRET_TILAKA, "\147\x72\141\x6e\x74\x5f\x74\171\x70\x65" => "\143\x6c\x69\x65\156\164\x5f\143\x72\x65\144\145\156\x74\151\141\154\163"); $header = array("\x43\157\x6e\164\145\x6e\164\x2d\124\x79\x70\x65\x3a\x20\141\160\160\154\x69\x63\141\164\151\157\156\x2f\x78\55\x77\x77\x77\55\146\x6f\x72\x6d\x2d\165\162\154\145\156\143\x6f\x64\145\x64"); $responsecurl = curl(array("\x75\162\x6c" => TILAKA_BASE_URL . "\141\165\164\150", "\155\x65\164\x68\x6f\144" => "\120\117\123\x54", "\x68\145\141\x64\x65\162" => $header, "\142\157\144\171" => http_build_query($body), "\x73\x61\x76\145\x6c\x6f\147" => true, "\x73\x6f\x75\x72\x63\x65" => "\124\x49\114\x41\x4b\x41\x2d\x54\x4f\x4b\105\116")); $responsecurl = json_decode($responsecurl, TRUE); return $responsecurl; } public static function uuid() { $header = array("\103\x6f\x6e\164\x65\156\164\x2d\124\171\x70\x65\x3a\40\x61\x70\x70\154\151\143\141\x74\151\157\x6e\57\x6a\x73\157\156", "\101\x75\164\x68\x6f\162\x69\x7a\x61\x74\x69\157\156\x3a\40\102\145\141\x72\x65\162\40" . Tilaka::oauth()["\141\143\143\x65\x73\x73\137\x74\x6f\x6b\145\156"]); $responsecurl = curl(array("\165\x72\154" => TILAKA_BASE_URL . "\x67\145\156\x65\162\x61\x74\x65\125\x55\x49\x44", "\x6d\145\164\x68\157\144" => "\x50\x4f\123\x54", "\x68\x65\141\x64\145\162" => $header, "\x62\157\x64\x79" => '', "\163\x61\166\x65\x6c\x6f\x67" => true, "\x73\x6f\165\x72\x63\x65" => "\124\111\x4c\101\x4b\101\x2d\125\125\x49\x44")); return json_decode($responsecurl, TRUE); } public static function uuidreenroll($useridentifier) { $header = array("\103\x6f\156\x74\x65\156\x74\55\x54\171\160\x65\x3a\x20\141\160\x70\x6c\151\143\x61\164\151\157\156\57\x6a\163\157\156", "\x41\165\164\x68\157\162\x69\x7a\x61\x74\151\157\x6e\72\x20\102\x65\141\x72\x65\x72\x20" . Tilaka::oauth()["\x61\143\x63\x65\163\x73\x5f\x74\x6f\153\145\x6e"]); $responsecurl = curl(array("\x75\162\154" => TILAKA_BASE_URL . "\x67\145\156\145\x72\x61\164\x65\125\125\111\x44\77\162\x65\x71\165\x65\163\164\137\164\171\x70\x65\75\162\145\x5f\x65\156\162\157\154\x6c\x26\165\x73\x65\x72\x5f\151\144\x65\156\x74\151\x66\151\x65\x72\x3d" . $useridentifier, "\155\145\x74\150\x6f\144" => "\x50\117\x53\x54", "\150\x65\141\x64\145\x72" => $header, "\x62\157\x64\171" => '', "\x73\x61\166\x65\x6c\x6f\x67" => true, "\163\157\165\162\143\x65" => "\124\x49\114\101\x4b\101\x2d\125\x55\x49\104\x45\x4e\x52\x4f\x4c\114")); return json_decode($responsecurl, TRUE); } public static function registerkyc($body) { $header = array("\103\x6f\x6e\x74\x65\156\164\x2d\124\171\x70\x65\x3a\x20\x61\x70\x70\154\x69\x63\141\x74\151\x6f\156\57\x6a\163\x6f\x6e", "\101\x75\x74\150\157\x72\x69\172\x61\x74\x69\157\156\72\x20\x42\x65\141\162\145\162\40" . Tilaka::oauth()["\141\x63\143\145\x73\x73\x5f\x74\x6f\x6b\145\156"]); $responsecurl = curl(array("\165\162\154" => TILAKA_BASE_URL . "\162\x65\147\x69\x73\164\x65\x72\x46\x6f\x72\113\171\x63\x43\x68\x65\143\153", "\x6d\x65\x74\150\157\x64" => "\120\x4f\x53\x54", "\x68\145\x61\144\145\x72" => $header, "\142\157\x64\171" => $body, "\163\x61\166\x65\154\x6f\147" => true, "\163\x6f\165\x72\x63\145" => "\124\x49\x4c\x41\113\101\55\x52\x45\x47\x49\x53\124\x45\x52\x4b\131\x43")); return json_decode($responsecurl, TRUE); } public static function checkregistrasiuser($body) { $header = array("\103\x6f\x6e\x74\x65\156\x74\x2d\124\171\160\145\72\x20\x61\160\160\154\151\143\141\x74\x69\x6f\x6e\57\152\163\x6f\156", "\101\x75\164\x68\x6f\x72\x69\x7a\x61\x74\151\x6f\156\72\x20\x42\145\141\162\145\x72\x20" . Tilaka::oauth()["\x61\x63\x63\145\163\163\137\164\x6f\153\x65\x6e"]); $responsecurl = curl(array("\165\162\154" => TILAKA_BASE_URL . "\x75\163\145\x72\162\x65\147\163\164\141\x74\x75\x73", "\x6d\145\x74\150\x6f\144" => "\x50\117\123\x54", "\x68\145\141\x64\145\162" => $header, "\x62\157\144\171" => $body, "\163\x61\x76\145\154\157\x67" => true, "\163\x6f\x75\x72\143\145" => "\124\111\x4c\101\113\x41\x2d\x43\110\x45\x43\113\122\105\x47\111\123\x54\x52\101\123\111\125\123\x45\x52")); return json_decode($responsecurl, TRUE); } public static function checkcertificateuser($body) { $header = array("\x43\x6f\x6e\164\x65\156\164\55\124\171\x70\x65\72\40\141\160\160\154\151\x63\141\164\x69\157\x6e\57\152\163\x6f\156", "\x41\165\x74\x68\x6f\162\151\172\141\164\x69\x6f\x6e\72\40\x42\x65\x61\x72\x65\x72\x20" . Tilaka::oauth()["\x61\143\143\145\x73\163\137\x74\x6f\x6b\x65\x6e"]); $responsecurl = curl(array("\x75\x72\154" => TILAKA_BASE_URL . "\143\150\x65\x63\153\x63\145\x72\x74\x73\164\x61\x74\x75\163", "\155\145\164\x68\157\144" => "\x50\x4f\123\x54", "\150\145\141\144\145\162" => $header, "\x62\x6f\144\171" => $body, "\x73\x61\x76\x65\x6c\157\x67" => true, "\163\x6f\x75\162\x63\x65" => "\124\x49\114\x41\x4b\101\55\x43\110\x45\x43\x4b\x43\x45\x52\124\x49\106\111\103\x41\x54\x45\125\x53\x45\122")); return json_decode($responsecurl, TRUE); } public static function revoke($body) { $header = array("\103\x6f\x6e\164\145\x6e\x74\55\x54\171\x70\x65\x3a\40\x61\x70\x70\x6c\151\x63\141\164\x69\157\x6e\x2f\x6a\x73\157\156", "\x41\165\164\x68\x6f\162\x69\172\x61\164\151\x6f\156\72\x20\x42\x65\x61\x72\145\x72\40" . Tilaka::oauth()["\x61\x63\143\x65\163\163\137\164\157\x6b\x65\x6e"]); $responsecurl = curl(array("\165\x72\x6c" => TILAKA_BASE_URL . "\x72\x65\x71\x75\145\x73\x74\122\x65\x76\x6f\153\x65\x43\145\x72\164\151\x66\151\143\141\164\145", "\155\x65\x74\x68\157\x64" => "\120\x4f\x53\x54", "\150\145\141\144\145\162" => $header, "\142\157\x64\x79" => $body, "\163\141\166\145\x6c\157\147" => true, "\163\x6f\x75\x72\x63\x65" => "\x54\x49\x4c\101\113\101\55\x52\x45\x56\x4f\113\105")); return json_decode($responsecurl, TRUE); } public static function uploadfile($location) { $header = array("\x41\x75\x74\x68\157\162\151\172\x61\x74\x69\157\156\x3a\x20\x42\x65\x61\x72\145\x72\40" . Tilaka::oauth()["\141\143\143\145\x73\163\137\x74\157\x6b\145\x6e"]); $mimedoc = mime_content_type($location); $infodoc = pathinfo($location); $namedoc = $infodoc["\x62\141\x73\145\x6e\141\155\145"]; $requestbody = array("\x66\x69\x6c\x65" => new CURLFILE($location, $mimedoc, $namedoc)); $responsecurl = curl(array("\x75\162\154" => TILAKALITE_URL . "\x61\160\x69\57\166\x31\x2f\x75\x70\154\x6f\141\x64", "\x6d\145\164\x68\157\144" => "\120\117\123\124", "\x68\x65\x61\x64\x65\162" => $header, "\142\157\144\171" => $requestbody, "\x73\x61\166\x65\154\157\147" => false, "\163\x6f\x75\162\143\145" => "\124\x49\114\x41\x4b\101\55\x55\120\114\x4f\x41\x44\106\111\114\105")); return json_decode($responsecurl, TRUE); } public static function requestsign($body) { $header = array("\x43\x6f\156\x74\x65\156\x74\x2d\124\x79\160\145\72\x20\141\x70\160\x6c\x69\143\141\x74\x69\x6f\156\x2f\x6a\163\x6f\156", "\x41\165\164\150\x6f\162\151\172\x61\x74\x69\x6f\156\x3a\40\102\145\x61\x72\x65\162\40" . Tilaka::oauth()["\x61\x63\143\x65\x73\163\x5f\x74\x6f\153\x65\156"]); $responsecurl = curl(array("\x75\x72\154" => TILAKALITE_URL . "\141\x70\x69\x2f\166\61\x2f\x72\145\x71\165\x65\163\x74\x73\151\x67\156", "\x6d\145\164\x68\x6f\144" => "\x50\x4f\123\x54", "\150\x65\141\144\x65\162" => $header, "\x62\157\x64\x79" => $body, "\163\x61\166\145\154\157\x67" => true, "\x73\x6f\x75\162\x63\145" => "\x54\111\x4c\x41\x4b\x41\55\122\x45\x51\x53\x49\107\x4e")); return json_decode($responsecurl, TRUE); } public static function excutesign($body) { $header = array("\103\x6f\x6e\164\x65\156\x74\x2d\124\171\x70\x65\x3a\x20\x61\x70\160\154\151\x63\x61\x74\x69\x6f\x6e\x2f\x6a\x73\157\156", "\101\x75\164\150\x6f\162\151\x7a\x61\x74\x69\157\x6e\72\x20\x42\145\x61\x72\x65\x72\40" . Tilaka::oauth()["\x61\143\x63\145\x73\163\x5f\164\157\x6b\x65\156"]); $responsecurl = curl(array("\165\x72\154" => TILAKALITE_URL . "\141\160\151\x2f\166\61\x2f\x65\170\x65\x63\x75\x74\145\163\x69\147\x6e", "\155\x65\164\x68\x6f\144" => "\120\117\123\124", "\150\145\141\x64\x65\162" => $header, "\x62\x6f\x64\x79" => $body, "\163\x61\166\x65\154\x6f\147" => true, "\163\157\165\162\143\145" => "\x54\x49\114\101\x4b\101\x2d\x45\x58\105\103\125\124\x45\123\x49\107\116")); return json_decode($responsecurl, TRUE); } public static function excutesignstatus($body) { $header = array("\x43\x6f\156\164\x65\156\164\x2d\x54\171\x70\145\72\x20\x61\160\160\x6c\x69\143\x61\x74\151\157\156\57\152\x73\157\x6e", "\101\x75\164\x68\x6f\162\x69\x7a\x61\164\x69\x6f\156\x3a\x20\x42\x65\x61\162\x65\x72\40" . Tilaka::oauth()["\141\x63\x63\x65\163\x73\x5f\x74\x6f\153\145\156"]); $responsecurl = curl(array("\x75\162\x6c" => TILAKALITE_URL . "\141\160\151\x2f\x76\61\57\x63\x68\x65\143\x6b\x73\151\147\156\x73\164\141\x74\165\x73", "\x6d\x65\x74\150\157\x64" => "\120\x4f\x53\124", "\150\x65\141\x64\145\x72" => $header, "\142\157\144\171" => $body, "\163\x61\x76\145\154\157\x67" => true, "\x73\157\165\162\143\x65" => "\x54\x49\114\x41\113\101\x2d\x53\x49\107\x4e\123\124\x41\x54\125\x53")); return json_decode($responsecurl, TRUE); } } ?>
+    class Tilaka{
+
+        public static function oauth(){
+            $body   = array("client_id"=>CLIENT_ID_TILAKA,"client_secret"=>CLIENT_SECRET_TILAKA,"grant_type"=>"client_credentials");
+            $header = array("Content-Type: application/x-www-form-urlencoded");
+
+            $responsecurl = curl([
+                'url'     => TILAKA_BASE_URL."auth",
+                'method'  => "POST",
+                'header'  => $header,
+                'body'    => http_build_query($body),
+                'savelog' => true,
+                'source'  => "TILAKA-TOKEN"
+            ]);
+
+            $responsecurl = json_decode($responsecurl,TRUE);
+            return $responsecurl;
+        }
+
+        public static function uuid($name,$email){
+            $header = array("Content-Type: application/json","Authorization: Bearer ".Tilaka::oauth()['access_token']);
+
+            $responsecurl = curl([
+                'url'     => TILAKA_BASE_URL."generateUUID?name=".$name."&email=".$email,
+                'method'  => "POST",
+                'header'  => $header,
+                'body'    => "",
+                'savelog' => true,
+                'source'  => "TILAKA-UUID"
+            ]);
+
+            return json_decode($responsecurl,TRUE);
+        }
+
+        public static function uuidreenroll($useridentifier){
+            $header = array("Content-Type: application/json","Authorization: Bearer ".Tilaka::oauth()['access_token']);
+
+            $responsecurl = curl([
+                'url'     => TILAKA_BASE_URL."generateUUID?request_type=re_enroll&user_identifier=".$useridentifier,
+                'method'  => "POST",
+                'header'  => $header,
+                'body'    => "",
+                'savelog' => true,
+                'source'  => "TILAKA-UUIDENROLL"
+            ]);
+
+            return json_decode($responsecurl,TRUE);
+        }
+
+        public static function registerkyc($body){
+            $header = array("Content-Type: application/json","Authorization: Bearer ".Tilaka::oauth()['access_token']);
+
+            $responsecurl = curl([
+                'url'     => TILAKA_BASE_URL."registerForKycCheck",
+                'method'  => "POST",
+                'header'  => $header,
+                'body'    => $body,
+                'savelog' => true,
+                'source'  => "TILAKA-REGISTERKYC"
+            ]);
+
+            return json_decode($responsecurl,TRUE); 
+        }
+
+        public static function checkregistrasiuser($body){
+            $header = array("Content-Type: application/json","Authorization: Bearer ".Tilaka::oauth()['access_token']);
+
+            $responsecurl = curl([
+                'url'     => TILAKA_BASE_URL."userregstatus",
+                'method'  => "POST",
+                'header'  => $header,
+                'body'    => $body,
+                'savelog' => true,
+                'source'  => "TILAKA-CHECKREGISTRASIUSER"
+            ]);
+
+            return json_decode($responsecurl,TRUE); 
+        }
+
+        public static function checkcertificateuser($body){
+            $header = array("Content-Type: application/json","Authorization: Bearer ".Tilaka::oauth()['access_token']);
+
+            $responsecurl = curl([
+                'url'     => TILAKA_BASE_URL."checkcertstatus",
+                'method'  => "POST",
+                'header'  => $header,
+                'body'    => $body,
+                'savelog' => true,
+                'source'  => "TILAKA-CHECKCERTIFICATEUSER"
+            ]);
+
+            return json_decode($responsecurl,TRUE); 
+        }
+
+        public static function revoke($body){
+            $header = array("Content-Type: application/json","Authorization: Bearer ".Tilaka::oauth()['access_token']);
+
+            $responsecurl = curl([
+                'url'     => TILAKA_BASE_URL."requestRevokeCertificate",
+                'method'  => "POST",
+                'header'  => $header,
+                'body'    => $body,
+                'savelog' => true,
+                'source'  => "TILAKA-REVOKE"
+            ]);
+
+            return json_decode($responsecurl,TRUE); 
+        }
+
+        public static function uploadfile($location){
+            $header = array("Authorization: Bearer ".Tilaka::oauth()['access_token']);
+            
+            $mimedoc =mime_content_type($location);
+            $infodoc =pathinfo($location);
+            $namedoc =$infodoc['basename'];
+
+            $requestbody = array(
+                'file' => new CURLFILE($location,$mimedoc,$namedoc)
+            );
+
+            $responsecurl = curl([
+                'url'     => TILAKALITE_URL."api/v1/upload",
+                'method'  => "POST",
+                'header'  => $header,
+                'body'    => $requestbody,
+                'savelog' => false,
+                'source'  => "TILAKA-UPLOADFILE"
+            ]);
+
+            return json_decode($responsecurl,TRUE); 
+        }
+
+        public static function requestsign($body){
+            $header = array("Content-Type: application/json","Authorization: Bearer ".Tilaka::oauth()['access_token']);
+
+            $responsecurl = curl([
+                'url'     => TILAKALITE_URL."api/v1/requestsign",
+                'method'  => "POST",
+                'header'  => $header,
+                'body'    => $body,
+                'savelog' => true,
+                'source'  => "TILAKA-REQSIGN"
+            ]);
+
+            return json_decode($responsecurl,TRUE); 
+        }
+
+        public static function excutesign($body){
+            $header = array("Content-Type: application/json","Authorization: Bearer ".Tilaka::oauth()['access_token']);
+
+            $responsecurl = curl([
+                'url'     => TILAKALITE_URL."api/v1/executesign",
+                'method'  => "POST",
+                'header'  => $header,
+                'body'    => $body,
+                'savelog' => true,
+                'source'  => "TILAKA-EXECUTESIGN"
+            ]);
+
+            return json_decode($responsecurl,TRUE); 
+        }
+
+        public static function excutesignstatus($body){
+            $header = array("Content-Type: application/json","Authorization: Bearer ".Tilaka::oauth()['access_token']);
+
+            $responsecurl = curl([
+                'url'     => TILAKALITE_URL."api/v1/checksignstatus",
+                'method'  => "POST",
+                'header'  => $header,
+                'body'    => $body,
+                'savelog' => true,
+                'source'  => "TILAKA-SIGNSTATUS"
+            ]);
+
+            return json_decode($responsecurl,TRUE); 
+        }
+
+    }
+
+?>
